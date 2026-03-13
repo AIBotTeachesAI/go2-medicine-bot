@@ -57,3 +57,13 @@ def capture_image(medicine: str) -> str:
     path = f"/tmp/{medicine}_live.jpg"
     cv2.imwrite(path, frame)
     return path
+
+def celebrate():
+    if MOCK_MODE:
+        print("[MOCK] Robot doing celebration dance"); time.sleep(2); return
+    try:
+        robot.motion.asset.pose("say hello")
+        robot._connect_to_mqtt_if_not_connected()
+        cw.mqtt.publish(f"twins/{robot.uuid}/commands/sport", {"action": "dance"})
+    except Exception as e:
+        print(f"[celebrate] {e}")
