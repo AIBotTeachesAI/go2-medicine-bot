@@ -27,7 +27,9 @@ def run():
     if verified:
         navigate_home()
         speak(f"I have verified and retrieved your {medicine}. Here you go!")
-        print("✅ Demo complete!")
+        celebrate() 
+        navigate_home()
+        print("✅ Demo complete!")    
     else:
         speak(f"Warning: I could not verify the medicine label. Please check manually.")
         navigate_home()
